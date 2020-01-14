@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Opencode'20 leaderboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Ugly Board</h2>
+              <p> I never saw a more ugly leaderboard, we need to work on this! Dah!</p>
+  <table id="leaderboard">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Points</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+     
+    </tbody>
+  </table>
+</div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        addToTable(myArr);
+    }
+};
+url= "https://fierce-everglades-19959.herokuapp.com/getData/"
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function addToTable(arr) {
+   
+    var i;
+    for(i = 0; i < arr.length; i++) {
+            name=arr[i].username;
+            points= arr[i].points;
+            var markup = "<tr><td>"+ name + "</td><td> " + "&nbsp;" + points + "</td></tr>";
+            $("table tbody").append(markup);
+    }
+    
+}
+         
+</script>
+</body>
+</html>
