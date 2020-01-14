@@ -1,2 +1,2 @@
-# Opencode'20 Leaderboard
+# Opencode'20 Leaderboard Frontend
 
