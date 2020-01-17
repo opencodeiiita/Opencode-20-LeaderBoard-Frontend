@@ -29,6 +29,11 @@
 
 <script>
 var xmlhttp = new XMLHttpRequest();
+url= "https://fierce-everglades-19959.herokuapp.com/getData/";
+xmlhttp.open("GET", url, true);
+
+
+xmlhttp.send();
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -36,9 +41,6 @@ xmlhttp.onreadystatechange = function() {
         addToTable(myArr);
     }
 };
-url= "http://fierce-everglades-19959.herokuapp.com/getData/"
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
 
 function addToTable(arr) {
    
