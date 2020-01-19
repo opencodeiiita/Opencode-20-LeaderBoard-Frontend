@@ -1,72 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Opencode'20 Search User</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="shortcut icon" href="https://opencodeiiita.github.io/dist/images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <style>
-  	body,  table {
-    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    }
-    h1{
-        font-weight: 100;
-    }
-    table, tr, td{
-        border: 1px solid black; 
-        border-collapse: collapse;
-        padding:1rem;
-        text-align: center;
-    }
-    #status{
-        margin: 2rem;
-        font-size: 2rem;
-    }
-    input{
-        width:20%;
-        padding: 15px 22px;
-        margin: 10px 5px;
-        box-sizing: border-box;  
-        font-size: 1rem;
-    }
-    button{
-        background-color: rgb(81, 192, 186); /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-    a{
-        color: rgb(81, 192, 186);
-    }
-  </style>
+<head>
+    <title>Opencode'20 Search User</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="https://opencodeiiita.github.io/dist/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body,
+        table {
+            font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        
+        h1 {
+            font-weight: 100;
+        }
+        
+        table,
+        tr,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        #status {
+            margin: 2rem;
+            font-size: 2rem;
+        }
+        
+        input {
+            width: 20%;
+            padding: 15px 22px;
+            margin: 10px 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        
+        .submitbtn {
+            background-color: rgb(81, 192, 186);
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        a {
+            color: rgb(81, 192, 186);
+        }
+        
+        .floatbtn {
+            background-color: rgb(255, 255, 255);
+            /* Green */
+            border: 2px solid #555555;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 14px;
+        }
+        
+        .floatbtn:hover {
+            background-color: #555555;
+            color: white;
+        }
+    </style>
 
 </head>
 
 <body>
+
+    <div class=navbar style="margin-left: 90%">
+
+
+        <a href="index.html">
+            <button class="floatbtn" type="submit">HOME</button>
+            <!--<i class="material-icons" style="font-size:45px; color:black">home</i>-->
+        </a>
+
+    </div>
     <center>
-    <div>
-        <h1> Search users here </h1>
-    </div>
-    <div class="main"> 
-        <input type="text" id="user" placeholder="Enter username">
-        <button id=submit type=submit>Submit</button>
-    </div>
-    
-    <div id=status></div>
-    <table id = data></table>
+        <div>
+            <h1> Search users here </h1>
+        </div>
+        <div class="main">
+            <input type="text" id="user" placeholder="Enter username">
+            <button class="submitbtn" id=submit type=submit>Submit</button>
+        </div>
+
+        <div id=status></div>
+        <table id=data></table>
     </center>
     <script>
         var myArr;
         var xmlhttp = new XMLHttpRequest();
-        url= "https://fierce-everglades-19959.herokuapp.com/getData/";
+        url = "https://fierce-everglades-19959.herokuapp.com/getData/";
         xmlhttp.open("GET", url, true);
 
 
@@ -80,9 +117,10 @@
 
         var urlCurrent = window.location.href;
         var splitted = urlCurrent.split('?q=')
-        if (splitted.length>1){
+        if (splitted.length > 1) {
             document.querySelector("#user").value = splitted[1];
         }
+
 
         function sortByPoints(){
             return function(a,b){
@@ -95,42 +133,46 @@
         }
 
 
-        document.querySelector("#submit").addEventListener("click", ()=>{
+        document.querySelector("#submit").addEventListener("click", () => {
+
             $("table ").empty();
-            
+
             var query = document.querySelector("#user").value;
             var found = 0;
+
             myArr.sort(sortByPoints());
-            for (var i=0; i<myArr.length; i++){
-                if (myArr[i].username==query){
+
+            for (var i = 0; i < myArr.length; i++) {
+                if (myArr[i].username == query) {
 
                     $("table ").append("<tr><td>"+ "S.No." + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" + "&nbsp;" + "Issues" + "</td><td>" + "&nbsp;" + "Points" + "</td></tr>");
                     document.getElementById("status").textContent = "Rank : " + (i+1) + " - " + myArr[i].username + " : " + myArr[i].points + " points";
                     requests = myArr[i].pullRequests;
                     issues = myArr[i].issues;
-                    pointspr = myArr[i].prPoints;
-                    for (var j=0; j<requests.length; j++){
+                    pointspr = myArr[i].prPoints
+                    for (var j = 0; j < requests.length; j++) {
+
                         var str1 = "Link";
                         var resultReq = str1.link(requests[j]);
                         var brokenUrl = issues[j];
                         var issUrl = "https://github.com";
-                        for (var k=6; k<brokenUrl.length-6;k++){
-                            issUrl+=brokenUrl[k]
+                        for (var k = 6; k < brokenUrl.length - 6; k++) {
+                            issUrl += brokenUrl[k]
                         }
-                        var str2="Link"
+                        var str2 = "Link"
                         var resultIss = str2.link(issUrl)
+
                         $("table ").append("<tr><td>"+ (j + 1) + "</td><td>" + "&nbsp;" + resultReq  + "</td><td>" + "&nbsp;" + resultIss + "</td><td>" +  "&nbsp;" + pointspr[j] + "</td></tr>" );
+
                     }
-                    found=1;
+                    found = 1;
                     break;
                 }
             }
-            if (!found){
-                    document.getElementById("status").textContent = "No user found";
+            if (!found) {
+                document.getElementById("status").textContent = "No user found";
             }
-            document.querySelector("#user").value="";
+            document.querySelector("#user").value = "";
         })
-    
-        
     </script>
 </body>
