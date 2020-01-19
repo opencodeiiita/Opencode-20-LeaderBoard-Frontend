@@ -57,7 +57,7 @@
     </div>
     <div class="main"> 
         <input type="text" id="user" placeholder="Enter username">
-        <button id=submit>Submit</button>
+        <button id=submit type=submit>Submit</button>
     </div>
     
     <div id=status></div>
@@ -77,6 +77,13 @@
                 myArr = JSON.parse(this.responseText);
             }
         };
+        
+        var urlCurrent = window.location.href;
+        var splitted = urlCurrent.split('?q=')
+        if (splitted.length>1){
+            document.querySelector("#user").value = splitted[1];
+        }
+
         document.querySelector("#submit").addEventListener("click", ()=>{
             $("table ").empty();
             
@@ -86,7 +93,7 @@
                 if (myArr[i].username==query){
 
                     $("table ").append("<tr><td>"+ "S.No." + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" + "&nbsp;" + "Issues" + "</td></tr>");
-                    document.getElementById("status").textContent = myArr[i].username;
+                    document.getElementById("status").textContent = myArr[i].username + " : " + myArr[i].points;
                     requests = myArr[i].pullRequests;
                     issues = myArr[i].issues;
                     for (var j=0; j<requests.length; j++){
@@ -108,6 +115,7 @@
             if (!found){
                     document.getElementById("status").textContent = "No user found";
             }
+            document.querySelector("#user").value="";
         })
     
         
