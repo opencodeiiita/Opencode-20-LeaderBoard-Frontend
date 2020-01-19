@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Opencode'20 Search User</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="https://opencodeiiita.github.io/dist/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+  	body,  table {
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    h1{
+        font-weight: 100;
+    }
+    table, tr, td{
+        border: 1px solid black; 
+        border-collapse: collapse;
+        padding:1rem;
+    }
+    #status{
+        margin: 2rem;
+        font-size: 2rem;
+    }
+    input{
+        width:20%;
+        padding: 15px 22px;
+        margin: 10px 5px;
+        box-sizing: border-box;  
+        font-size: 1rem;
+    }
+    button{
+        background-color: rgb(81, 192, 186); /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+  </style>
+
+</head>
+
+<body>
+    <center>
+    <div>
+        <h1> Search users here </h1>
+    </div>
+    <div class="main"> 
+        <input type="text" id="user" placeholder="Enter username">
+        <button id=submit>Submit</button>
+    </div>
+    
+    <div id=status></div>
+    <table id = data></table>
+    </center>
+    <script>
+        var myArr;
+        var xmlhttp = new XMLHttpRequest();
+        url= "https://fierce-everglades-19959.herokuapp.com/getData/";
+        xmlhttp.open("GET", url, true);
+
+
+        xmlhttp.send();
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myArr = JSON.parse(this.responseText);
+            }
+        };
+
+
+        document.querySelector("#submit").addEventListener("click", ()=>{
+            $("table ").empty();
+            
+            var query = document.querySelector("#user").value;
+            var found = 0;
+            for (var i=0; i<myArr.length; i++){
+                if (myArr[i].username==query){
+                    $("table ").append("<tr><td><strong>"+ "S.No." + "</strong></td><td><strong>" + "&nbsp;" + "Pull Requests" + "</strong></td></tr>");
+                    document.getElementById("status").textContent = myArr[i].username;
+                    requests = myArr[i].pullRequests;
+                    for (var j=0; j<requests.length; j++){
+                        $("table ").append("<tr><td>"+ (j + 1) + "</td><td>" + "&nbsp;" + requests[j] + "</td></tr>");
+                    }
+                    found=1;
+                    break;
+                }
+            }
+            if (!found){
+                    console.log("hey")
+                    document.getElementById("status").textContent = "No user found";
+            }
+        })
+    
+        
+    </script>
+</body>
