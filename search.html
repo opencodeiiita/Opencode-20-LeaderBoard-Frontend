@@ -20,6 +20,7 @@
         border: 1px solid black; 
         border-collapse: collapse;
         padding:1rem;
+        text-align: center;
     }
     #status{
         margin: 2rem;
@@ -41,6 +42,9 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
+    }
+    a{
+        color: rgb(81, 192, 186);
     }
   </style>
 
@@ -82,12 +86,24 @@
             var found = 0;
             for (var i=0; i<myArr.length; i++){
                 if (myArr[i].username==query){
-                    $("table ").append("<tr><td><strong>"+ "S.No." + "</strong></td><td><strong>" + "&nbsp;" + "Pull Requests" + "</strong></td></tr>");
+
+                    $("table ").append("<tr><td>"+ "S.No." + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" + "&nbsp;" + "Issues" + "</td></tr>");
                     document.getElementById("status").textContent = myArr[i].username;
                     requests = myArr[i].pullRequests;
+                    issues = myArr[i].issues;
                     for (var j=0; j<requests.length; j++){
-                        $("table ").append("<tr><td>"+ (j + 1) + "</td><td>" + "&nbsp;" + requests[j] + "</td></tr>");
+                        var str1 = "Link";
+                        var resultReq = str1.link(requests[j]);
+                        var brokenUrl = issues[j];
+                        var issUrl = "https://github.com";
+                        for (var k=6; k<brokenUrl.length-6;k++){
+                            issUrl+=brokenUrl[k]
+                        }
+                        var str2="Link"
+                        var resultIss = str2.link(issUrl)
+                        $("table ").append("<tr><td>"+ (j + 1) + "</td><td>" + "&nbsp;" + resultReq  + "</td><td>" + "&nbsp;" + resultIss + "</td></tr>");
                     }
+                    console.log(myArr[i].issues)
                     found=1;
                     break;
                 }
