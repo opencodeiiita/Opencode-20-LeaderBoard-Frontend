@@ -77,8 +77,6 @@
                 myArr = JSON.parse(this.responseText);
             }
         };
-
-
         document.querySelector("#submit").addEventListener("click", ()=>{
             $("table ").empty();
             
@@ -103,13 +101,11 @@
                         var resultIss = str2.link(issUrl)
                         $("table ").append("<tr><td>"+ (j + 1) + "</td><td>" + "&nbsp;" + resultReq  + "</td><td>" + "&nbsp;" + resultIss + "</td></tr>");
                     }
-                    console.log(myArr[i].issues)
                     found=1;
                     break;
                 }
             }
             if (!found){
-                    console.log("hey")
                     document.getElementById("status").textContent = "No user found";
             }
         })
