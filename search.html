@@ -96,7 +96,7 @@
             <input type="text" id="user" placeholder="Enter username">
             <button class="submitbtn" id=submit type=submit>Submit</button>
         </div>
-
+        <div id=user_icon></div>
         <div id=status></div>
         <table id=d ata></table>
     </center>
@@ -128,7 +128,15 @@
             var found = 0;
             for (var i = 0; i < myArr.length; i++) {
                 if (myArr[i].username == query) {
-
+         
+                    var div = document.getElementById('user_icon'); 
+                    div.innerHTML = '';
+                    var img = document.createElement('img'); 
+                    img.src = myArr[i].img; 
+                    img.style.height = '80px';
+                    img.style.width = '80px';
+                    div.appendChild(img);  
+                    
                     $("table ").append("<tr><td>" + "S.No." + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" + "&nbsp;" + "Issues" + "</td></tr>");
                     document.getElementById("status").textContent = myArr[i].username + " : " + myArr[i].points;
                     requests = myArr[i].pullRequests;
