@@ -154,8 +154,8 @@
                     img.style.width = '80px';
                     div.appendChild(img);  
                     
-                    $("table ").append("<tr><td>" + "S.No." + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" + "&nbsp;" + "Issues" + "</td></tr>");
-                    document.getElementById("status").textContent = myArr[i].username + " : " + myArr[i].points;
+                    $("table ").append("<tr><td>" + "S.No." + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" + "&nbsp;" + "Issues" + "</td><td>" + "Points" + "</td></tr>");
+                    document.getElementById("status").textContent = "Rank : "+ (i+1) + "-" + myArr[i].username + " : " + myArr[i].points;
 
                     requests = myArr[i].pullRequests;
                     issues = myArr[i].issues;
