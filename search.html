@@ -154,25 +154,26 @@
                     img.style.width = '80px';
                     div.appendChild(img);  
                     
-                    $("table ").append("<tr><td>" + "S.No." + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" + "&nbsp;" + "Issues" + "</td><td>" + "Points" + "</td></tr>");
-                    document.getElementById("status").textContent = "Rank : "+ (i+1) + "-" + myArr[i].username + " : " + myArr[i].points;
+                    $("table ").append("<tr><td>" + "S.No." + "</td><td>" + "&nbsp;" + "Repository" + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" +  "&nbsp;" + "Issues" + "</td><td>" + "Points" + "</td></tr>");
+                    document.getElementById("status").textContent = "Rank : "+ (i+1) + " - " + myArr[i].username + " : " + myArr[i].points;
 
                     requests = myArr[i].pullRequests;
                     issues = myArr[i].issues;
                     pointspr = myArr[i].prPoints
                     for (var j = 0; j < requests.length; j++) {
-
-                        var str1 = "Link";
+                        var pullLinkSplitted = requests[j].split("/");
+                        var str1 = "#"+pullLinkSplitted[6];
                         var resultReq = str1.link(requests[j]);
                         var brokenUrl = issues[j];
                         var issUrl = "https://github.com";
                         for (var k = 6; k < brokenUrl.length - 6; k++) {
                             issUrl += brokenUrl[k]
                         }
-                        var str2 = "Link"
+                        var issLinkSplitted = issues[j].split("/");
+                        var str2 = "#"+issLinkSplitted[5];
                         var resultIss = str2.link(issUrl)
 
-                        $("table ").append("<tr><td>"+ (j + 1) + "</td><td>" + "&nbsp;" + resultReq  + "</td><td>" + "&nbsp;" + resultIss + "</td><td>" +  "&nbsp;" + pointspr[j] + "</td></tr>" );
+                        $("table ").append("<tr><td>"+ (j + 1) + "</td><td>" + "&nbsp;" + pullLinkSplitted[4]  + "</td><td>" + "&nbsp;"  + resultReq  + "</td><td>" + "&nbsp;" + resultIss + "</td><td>" +  "&nbsp;" + pointspr[j] + "</td></tr>" );
 
                     }
                     found = 1;
