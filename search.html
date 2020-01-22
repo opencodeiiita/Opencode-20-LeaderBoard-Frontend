@@ -143,11 +143,12 @@
             myArr.sort(sortByPoints());
 
             for (var i = 0; i < myArr.length; i++) {
-                if (myArr[i].username == query) {
-
-         
+                
                     var div = document.getElementById('user_icon'); 
                     div.innerHTML = '';
+                
+                if (myArr[i].username == query) {
+                    
                     var img = document.createElement('img'); 
                     img.src = myArr[i].img; 
                     img.style.height = '80px';
