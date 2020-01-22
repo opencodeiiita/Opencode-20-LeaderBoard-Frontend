@@ -48,7 +48,7 @@ function addTop5images(arr){
       var ids = ['first', 'second', 'third', 'fourth', 'fifth'];
       var div = document.getElementById("top5");
       div.className = "row table table-success table-bordered table-hover border border-dark rounded w-100";
-      div.style = "font-size: 85%; font-weight: bold; align-self: auto; column-width:auto; margin-bottom: 10px; padding-top: 10px; padding-bottom: 10px;"
+      div.style = "font-size: 0.8em; font-weight: bold; align-self: auto; column-width:auto; margin-bottom: 10px; padding-top: 10px; padding-bottom: 10px;"
       
       for(var i=0;i<5;i++)
       {
@@ -56,13 +56,20 @@ function addTop5images(arr){
          div.innerHTML = '';
          var img = document.createElement('img'); 
          img.src = arr[i].img; 
-         img.style.height = '150px';
-         img.style.width = '150px';
+         img.style.height = '5em';
+         img.style.width = '5em';
          div.appendChild(img);
+         var breakl = document.createElement('br'); 
+         div.appendChild(breakl);
          var idtoupper = ids[i].toUpperCase();
          var markup = document.createElement('html');
-         markup = idtoupper +"\t\t" + arr[i].username + " |" + arr[i].points + "|";
+         markup = idtoupper;
          div.append(markup);
+         var breakl2 = document.createElement('br'); 
+         div.appendChild(breakl2);
+         var markup2 = document.createElement('html');
+         markup2 = arr[i].username + " |" + arr[i].points + "|";
+         div.append(markup2);
       }
       
 }
