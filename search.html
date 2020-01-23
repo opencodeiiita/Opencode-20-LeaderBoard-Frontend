@@ -42,6 +42,12 @@
             font-size: 1rem;
         }
         
+        @media (max-width: 1280px) {
+            input {
+                width: 260px;
+            }    
+        }
+
         .submitbtn {
             background-color: rgb(81, 192, 186);
             /* Green */
@@ -73,13 +79,18 @@
             background-color: #555555;
             color: white;
         }
+        .navbar {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
     </style>
 
 </head>
 
 <body>
 
-    <div class=navbar style="margin-left: 90%">
+    <div class="navbar">
 
 
         <a href="index.html">
@@ -89,16 +100,19 @@
 
     </div>
     <center>
+        <div style="margin-top: 70px;">
         <div>
             <h1> Search users here </h1>
         </div>
         <div class="main">
-            <input type="text" id="user" placeholder="Enter username">
-            <button class="submitbtn" id=submit type=submit>Submit</button>
+            <input class="username" type="text" id="user" placeholder="Enter username">
+            <br/>
+            <button class="submitbtn" id="submit" type=submit>Submit</button>
         </div>
         <div id=user_icon></div>
         <div id=status></div>
-        <table id=data></table>
+        <table id="data"></table>
+        </div>
     </center>
     <script>
         var myArr;
@@ -153,6 +167,7 @@
                     img.src = myArr[i].img; 
                     img.style.height = '80px';
                     img.style.width = '80px';
+                    img.style.marginTop = '10px';
                     div.appendChild(img);  
                     
                     $("table ").append("<tr><td>" + "S.No." + "</td><td>" + "&nbsp;" + "Repository" + "</td><td>" + "&nbsp;" + "Pull Requests" + "</td><td>" +  "&nbsp;" + "Issues" + "</td><td>" + "Points" + "</td></tr>");
