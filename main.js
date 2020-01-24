@@ -9,7 +9,7 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
         document.getElementById('leaderboard').innerHTML = 
-        '<thead><tr><th>Rank</th><th>&nbsp;   Photo</th>&nbsp; <th>Github ID</th><th>Points</th></tr></thead><tbody></tbody>'; //same as original structure
+        '<thead><tr><th>Rank</th><th>Photo</th><th>Github ID</th><th>Points</th></tr></thead><tbody></tbody>'; //same as original structure
         document.getElementById('loader').innerHTML = '';
         addToTable(myArr);
         addTop5images(myArr);
