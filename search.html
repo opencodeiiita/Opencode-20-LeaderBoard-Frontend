@@ -114,6 +114,9 @@ padding: 15px 32px;            text-align: center;
         </div>
     </center>
     <script>
+
+
+
         var myArr;
         var xmlhttp = new XMLHttpRequest();
         url = "https://fierce-everglades-19959.herokuapp.com/getData/";
@@ -125,13 +128,13 @@ padding: 15px 32px;            text-align: center;
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 myArr = JSON.parse(this.responseText);
+                var urlCurrent = window.location.href;
+                var splitted = urlCurrent.split('?q=')
+                if (splitted.length > 1) {
+                    document.querySelector("#user").value = splitted[1];
+                    displaydata();
+                }
             }
-        };
-
-        var urlCurrent = window.location.href;
-        var splitted = urlCurrent.split('?q=')
-        if (splitted.length > 1) {
-            document.querySelector("#user").value = splitted[1];
         }
 
 
@@ -147,7 +150,17 @@ padding: 15px 32px;            text-align: center;
 
 
         document.querySelector("#submit").addEventListener("click", () => {
+            var urlCurrent = window.location.href;
+            var splitted = urlCurrent.split('?q=')
+            if (splitted.length > 1) {
+                window.location.href = splitted[0] + "?q=" + document.querySelector("#user").value;
+            }
+            else{
+                window.location.href += "?q=" + document.querySelector("#user").value;
+            }
+        })
 
+        function displaydata(){
             $("table ").empty();
 
             var query = document.querySelector("#user").value;
@@ -199,6 +212,7 @@ padding: 15px 32px;            text-align: center;
                 document.getElementById("status").textContent = "No user found";
             }
             document.querySelector("#user").value = "";
-        })
+        }
+
     </script>
 </body>
