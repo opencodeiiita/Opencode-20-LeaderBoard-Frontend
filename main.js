@@ -27,7 +27,7 @@ function addToTable(arr) {
               var markup = "<tr><td><strong>"+ (i + 1) +"</strong></td><td><strong>" +'<img src="' +img+ '" alt="Italian Trulli" style="width:50px; height:50px;">' + "</strong></td><td><strong>" + "&nbsp;" + name + "</strong></td><td><strong>" + "&nbsp;" + points + "</strong></td></tr>";
             }
             else{*/
-              var markup = "<tr><td>"+ (i + 1) +"</strong></td><td><strong>" +'<img src="'+img+ '" alt="Italian Trulli" style="width:50px; height:50px;">' + "</td><td> " + "&nbsp;" + name + "</td><td> " + "&nbsp;" + points + "</td><td>" + "&nbsp;" + "<a href=search.html?q="+name+">"+"<img src=\"img/arrow.svg\" height=25em width=25em></a>" + "</td></tr>";
+              var markup = "<tr><td>"+ (i + 1) +"</strong></td><td><strong>" +'<img src="'+img+ '" alt="Italian Trulli" style="width:50px; height:50px;">' + "</td><td> " + "&nbsp;" + name + "</td><td> " + "&nbsp;" + points + "</td><td>" + "&nbsp;" + "<a href=search.html?q="+name+">"+"<img src=\"img/link.svg\" height=25em width=25em></a>" + "</td></tr>";
             //}
             $("table tbody").append(markup);
     }
@@ -74,7 +74,7 @@ function addTop5images(arr){
         var link = document.createElement('a');
          link.href = "search.html?q="+arr[i].username;
          var imgd = document.createElement('img'); 
-         imgd.src = "https://marketplace.canva.com/MACq7KcSUB8/1/screen/canva-arrow-shapes-simple-icon-MACq7KcSUB8.svg"; 
+         imgd.src = "./img/link.svg"; 
          imgd.style.height = '1em';
          imgd.style.width = '1em';
          var breakl3 = document.createElement('br'); 

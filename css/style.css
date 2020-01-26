@@ -1,0 +1,12 @@
+.material-icons:hover {
+    animation-duration: 0.95s;
+    border-left-width: 0px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+
+    transform: scale(1.5);
+    cursor: pointer;
+
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
